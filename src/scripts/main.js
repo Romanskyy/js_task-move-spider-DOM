@@ -35,11 +35,11 @@ wall.addEventListener('click', (e) => {
   // Приклад: 260 - 120 - 25 = 115.
   const rawTop = e.clientY - wallTopInnerEdge - spiderRect.height / 2;
   // Максимальний left, щоб не вийти праворуч.
-  // Приклад: 400 - 50 = 350.
-  const maxLeft = wall.clientWidth - spiderRect.width;
+  // Приклад: 400 - 50 = 350, або 40 - 50 = 0 (через захист).
+  const maxLeft = Math.max(wall.clientWidth - spiderRect.width, 0);
   // Максимальний top, щоб не вийти вниз.
-  // Приклад: 400 - 50 = 350.
-  const maxTop = wall.clientHeight - spiderRect.height;
+  // Приклад: 400 - 50 = 350, або 40 - 50 = 0 (через захист).
+  const maxTop = Math.max(wall.clientHeight - spiderRect.height, 0);
   // Обмежити left у діапазоні [0, maxLeft].
   // Приклад: -20 -> 0, 120 -> 120, 500 -> 350.
   const nextLeft = Math.min(Math.max(rawLeft, 0), maxLeft);
